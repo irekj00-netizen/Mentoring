@@ -212,5 +212,45 @@ def m1_50(lista):
     lista = []
     return lista[:]
 
+def m1_51(lista):
+    lista = lista[2:5] + lista[2:5]
+    return lista
+
+def m1_52(lista):
+    lista2 = [lista[i] + lista [abs(i-8)] for i in range(1, 8)]
+    return lista2
+
+def m1_53(macierz):
+    wiersz_1 = ""
+    for i in range(0, 3):
+        wiersz_1 = wiersz_1 + str(macierz[i][0]) + ","
+    return wiersz_1[:-1]
+
+def m1_55(n):
+    for i in range(1, n + 2):
+        for j in range(1, i):
+            print(j, end=" ")
+        print("")
+
+def m1_56(n):
+    for i in range(1, n + 1):
+        for j in range(1, i):
+            print(j, end=" ")
+        print("")
+    for i in range(n + 1, 1, -1):
+        for j in range(1, i):
+            print(j, end=" ")
+        print("")
+
+def m1_57(lista):
+    zmiany = 0
+    for i in range(1, len(lista)):
+        if lista[i] - lista[i - 1]:
+            zmiany += 1
+    return zmiany
+
+def m1_58(lista):
+    return list(enumerate(lista))
+
 # print(m1_40([1, 2, 4, 5, 4, 3, 2, 5, 1, 10, 7, 5, 3, 4, 5, 1, 12, 3]))
-print(m1_50([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
+print(m1_58(['a', 'b', 'c', 'd']))
