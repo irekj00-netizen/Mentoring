@@ -69,21 +69,23 @@ def m3_7(słownik):
 #     licznik_słów[i] = licznik_słów.get(i,0) + 1
 # licznik_słów
 
-def m3_13(słownik):
-    return all(słownik[i] == 12 for i in słownik)
+# def m3_13(słownik):
+#     return all(słownik[i] == 12 for i in słownik)
 
-def m3_14(słownik):
-    for i in poziomy.items():
-        print(i)
-    if isinstance(poziomy["a"], dict):
-        print("!")
-    return "!"
+def m3_14(słownik, licznik):
+    for i in słownik.items():
+        print(słownik, licznik)
+        if isinstance(i[1], dict):
+            m3_14(i[1], licznik+1)
+    return licznik
 
-def m3_29(słowo):
-    if len(słowo) <= 1:
-        return słowo
-    return słowo[-1] + m3_29(słowo[:-1])
+
+# def m3_29(słowo):
+#     if len(słowo) <= 1:
+#         return słowo
+#     return słowo[-1] + m3_29(słowo[:-1])
 
 # print(m3_3())
 # print(m3_4(m3_3(),"Wiesiu2"))
-print(m3_7({'e': 5, 'c': 3, 'a': 1, 'f': 0, 'b': 2, 'd':1}))
+# print(m3_7({'e': 5, 'c': 3, 'a': 1, 'f': 0, 'b': 2, 'd':1}))
+print(m3_14({"a":{"b":{"c":"Dno"}, "d":"Muł"},"e":"Trawa"}, 0))
