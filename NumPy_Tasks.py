@@ -1,6 +1,6 @@
 #1
 import numpy as np
-from numpy.ma.core import count
+# from numpy.ma.core import count
 
 def npt_2():
     tablica = np.array([i for i in range(1,11)])
@@ -123,7 +123,22 @@ def npt_21b(tablica):
 
 def npt_22(wymiar):
     tablica = np.array([np.array([j + 1 for j in range(i * wymiar, i * wymiar + wymiar)]) for i in range(0, wymiar)])
-    return tablica, np.sum(tablica, axis=0)
+    return tablica
+
+def npt_22a(tablica):
+    return np.sum(tablica, axis=1), np.sum(tablica, axis=0)
+
+def npt_22b(tablica):
+    return np.max(tablica), np.min(tablica)
+
+def npt_22c(tablica):
+    return np.sum(tablica, axis=1)/3
+
+def npt_23a(A, B):
+    return np.add(A, B), np.subtract(A, B), np.multiply(A, B)
+
+def npt_23b(A, B):
+    return np.matmul(A, B)
 
 # print(npt_2())
 # print(npt_3(npt_2()))
@@ -158,4 +173,9 @@ def npt_22(wymiar):
 # print(npt_21())
 # print(npt_21a(npt_21()))
 # print(npt_21b(npt_21()))
-print(npt_22(3))
+# print(npt_22(3))
+# print(npt_22a(npt_22(3)))
+# print(npt_22b(npt_22(3)))
+# print(npt_22c(npt_22(3)))
+print (npt_23a([[2, 4],[1,3]], [[5, 2],[3, 6]]))
+print (npt_23b([[2, 4],[1,3]], [[5, 2],[3, 6]]))
