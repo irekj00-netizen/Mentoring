@@ -68,5 +68,5 @@ def T1(n):
 
 # print(m2_14({'imię': 'Wiesio2', 'gatunek': 'kot', 'kolor': 'czarny', 'lubi': 'spać'}))
 # print(m2_17(('a', 1), ('b', 2)))
-# print(m2_18({1: None, 2: "Dwa", 3: "Trzy"}))
-T1(5)
+print(m2_18({1: None, 2: "Dwa", 3: "Trzy"}))
+# T1(5)

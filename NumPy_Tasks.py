@@ -140,6 +140,40 @@ def npt_23a(A, B):
 def npt_23b(A, B):
     return np.matmul(A, B)
 
+def npt_23c(A):
+    return np.matmul(np.linalg.inv(A), A)
+
+def npt_24(n):
+    return np.reshape([i+1 for i in range(n*n)], (4,4))
+
+def npt_24a(A):
+    return np.diag(A)
+
+def npt_24b(A):
+    return np.flip(A, axis=1)
+    # return np.array([A[i][::-1] for i in range(0,4)])
+
+def npt_24c(A):
+    return np.flip(A, axis=0)
+
+def npt_24d(A):
+    A[[0, 3],:] = A[[3,0],:]
+    return A
+
+def npt_24e(A):
+    return A.flatten()
+
+def npt_25():
+    A = np.array([np.random.randint(0,100) for i in range(0,10)])
+    return A, (A - np.min(A))/(np.max(A) - np.min(A))
+
+def npt_26():
+    return np.random.rand(20)
+
+def npt_26a(A):
+    return np.array([np.average(A), np.median(A), np.var(A), np.std(A)])
+
+
 # print(npt_2())
 # print(npt_3(npt_2()))
 # print(npt_4(3))
@@ -177,5 +211,15 @@ def npt_23b(A, B):
 # print(npt_22a(npt_22(3)))
 # print(npt_22b(npt_22(3)))
 # print(npt_22c(npt_22(3)))
-print (npt_23a([[2, 4],[1,3]], [[5, 2],[3, 6]]))
-print (npt_23b([[2, 4],[1,3]], [[5, 2],[3, 6]]))
+# print (npt_23a([[2, 4],[1,3]], [[5, 2],[3, 6]]))
+# print (npt_23b([[2, 4],[1,3]], [[5, 2],[3, 6]]))
+# print (npt_23c([[2, 4],[1,3]]))
+# print (npt_24(4))
+# print (npt_24a(npt_24(4)))
+# print (npt_24b(npt_24(4)))
+# print (npt_24c(npt_24(4)))
+# print (npt_24d(npt_24(4)))
+# print (npt_24e(npt_24(4)))
+# print(npt_25())
+# print(npt_26())
+print(npt_26a(npt_26()))
