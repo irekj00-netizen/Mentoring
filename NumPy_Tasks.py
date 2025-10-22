@@ -10,7 +10,8 @@ def npt_3(tablica):
     return np.shape(tablica), tablica.dtype
 
 def npt_4(wymiar):
-    return np.array([np.array([j+1 for j in range(i*wymiar, i*wymiar+wymiar)]) for i in range(0, wymiar)])
+    # return np.array([np.array([j+1 for j in range(i*wymiar, i*wymiar+wymiar)]) for i in range(0, wymiar)])
+    return np.array([[j+1 for j in range(i*wymiar, i*wymiar+wymiar)] for i in range(0, wymiar)])
 
 def npt_5():
     return np.zeros([10]), np.zeros([3,4])
@@ -28,12 +29,12 @@ def npt_9():
     return np.eye(4,4)
 
 def npt_10():
-    return np.array([np.random.randint(1,100) for i in range(1,11)])
+    return np.array([np.random.randint(1,100) for _ in range(10)])
 
 def npt_11(lista1, lista2):
     tabl1 = np.array(lista1)
     tabl2 = np.array(lista2)
-    return np.add(tabl1, tabl2), np.subtract(tabl1, tabl2), np.multiply(tabl1, tabl2), np.divide(tabl1, tabl2)
+    return tabl1 + tabl2, tabl1 - tabl2, tabl1 * tabl2, tabl1 / tabl2
 
 def npt_12(lista):
     # return np.square(np.array(lista))
@@ -149,14 +150,14 @@ def npt_24(n):
 def npt_24a(A):
     return np.diag(A)
 
-def npt_24b(A):
+def npt_24b(A): # spróbować metodą z 24d
     return np.flip(A, axis=1)
     # return np.array([A[i][::-1] for i in range(0,4)])
 
 def npt_24c(A):
     return np.flip(A, axis=0)
 
-def npt_24d(A):
+def npt_24d(A): # sprawdzić inne kombinacje
     A[[0, 3],:] = A[[3,0],:]
     return A
 
@@ -172,6 +173,14 @@ def npt_26():
 
 def npt_26a(A):
     return np.array([np.average(A), np.median(A), np.var(A), np.std(A)])
+
+def npt_26b(A):
+    ens = 1
+    for i in A:
+        if ens - np.average(A) < ens:
+            ens = i
+    return A, np.average(A), ens
+
 
 
 # print(npt_2())
@@ -222,4 +231,8 @@ def npt_26a(A):
 # print (npt_24e(npt_24(4)))
 # print(npt_25())
 # print(npt_26())
-print(npt_26a(npt_26()))
+# print(npt_26a(npt_26()))
+# print(npt_26b(npt_26()))
+a = [[0,1,2],[3,4,5],[6,7,8]]
+# a[0],a[-1] = a[-1],a[0]
+print(a, a[0][-1])
