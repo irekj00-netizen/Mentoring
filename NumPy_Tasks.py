@@ -169,7 +169,7 @@ def npt_25():
     return A, (A - np.min(A))/(np.max(A) - np.min(A))
 
 def npt_26():
-    return np.random.rand(20)
+    return np.random.rand(5)
 
 def npt_26a(A):
     return np.array([np.average(A), np.median(A), np.var(A), np.std(A)])
@@ -177,7 +177,7 @@ def npt_26a(A):
 def npt_26b(A):
     ens = 1
     for i in A:
-        if ens - np.average(A) < ens:
+        if np.absolute(i - np.average(A)) < np.absolute(ens - np.average(A)):
             ens = i
     return A, np.average(A), ens
 
@@ -232,7 +232,4 @@ def npt_26b(A):
 # print(npt_25())
 # print(npt_26())
 # print(npt_26a(npt_26()))
-# print(npt_26b(npt_26()))
-a = [[0,1,2],[3,4,5],[6,7,8]]
-# a[0],a[-1] = a[-1],a[0]
-print(a, a[0][-1])
+print(npt_26b(npt_26()))
