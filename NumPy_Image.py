@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 import matplotlib.image as img
 import cv2
 
-def npi_1_pil(): #PIL
+def npi_1_pil():
     obraz = Image.open(r"C:\Users\irekj\Documents\Python\Mentoring\Image_6.png")
     return obraz
 
-def npi_1_mpl(): #matplotlib
+def npi_1_mpl():
     obraz = img.imread(r"C:\Users\irekj\Documents\Python\Mentoring\Image_6.png")
     return obraz
 
-def npi_1_ocv(): #OpenCV
-    obraz = cv2.imread(r"C:\Users\irekj\Documents\Python\Mentoring\Image_6.png")#OpenCV
+def npi_1_ocv():
+    obraz = cv2.imread(r"C:\Users\irekj\Documents\Python\Mentoring\Image_6.png")
     return obraz
 
 def npi_2a_pil(obraz):
@@ -21,6 +21,12 @@ def npi_2a_pil(obraz):
 
 def npi_2a_mpl(obraz):
     plt.imshow(obraz)
+    plt.axis('off')
+    plt.show()
+
+def npi_2a_mpl_gray(obraz):
+    obraz = cv2.cvtColor(obraz, cv2.COLOR_BGR2GRAY)
+    plt.imshow(obraz, cmap='gray')
     plt.axis('off')
     plt.show()
 
@@ -40,48 +46,30 @@ def npi_2b_ocv(obraz):
 
 def npi_3a_pil(obraz):
     obrazR = np.array(obraz)
-    obrazR[:, :, 1] *= 0
-    obrazR[:, :, 2] *= 0
-    obrazR = Image.fromarray(obrazR)
-    obrazR.show()
     obrazG = np.array(obraz)
-    obrazG[:, :, 0] *= 0
-    obrazG[:, :, 2] *= 0
-    obrazG = Image.fromarray(obrazG)
-    obrazG.show()
     obrazB = np.array(obraz)
-    obrazB[:, :, 0] *= 0
-    obrazB[:, :, 1] *= 0
-    obrazB = Image.fromarray(obrazB)
-    obrazB.show()
+    obrazR[:, :, (1,2)] = 0
+    obrazG[:, :, (0,2)] = 0
+    obrazB[:, :, (0,1)] = 0
+    return Image.fromarray(obrazR), Image.fromarray(obrazG), Image.fromarray(obrazB)
 
 def npi_3a_mpl(obraz):
     obrazR = obraz.copy()
     obrazG = obraz.copy()
     obrazB = obraz.copy()
-    obrazR[::, ::, (1,2)] = 0
-    plt.imshow(obrazR)
-    plt.show()
-    obrazG[::, ::, (0,2)] = 0
-    plt.imshow(obrazG)
-    plt.show()
-    obrazB[::,::, (0,1)]=0
-    plt.imshow(obrazB)
-    plt.show()
+    obrazR[:, :, (1,2)] = 0
+    obrazG[:, :, (0,2)] = 0
+    obrazB[:, :, (0,1)] = 0
+    return obrazR, obrazG, obrazB
 
 def npi_3a_ocv(obraz):
+    obrazB = obraz.copy()
     obrazR = obraz.copy()
     obrazG = obraz.copy()
-    obrazB = obraz.copy()
+    obrazB[:, :, (1,2)] = 0
     obrazR[:, :, (0,1)] = 0
     obrazG[:, :, (0,2)] = 0
-    obrazB[:, :, (1,2)] = 0
-    cv2.imshow("Red", obrazR)
-    cv2.imshow("Green", obrazG)
-    cv2.imshow("Blue", obrazB)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
+    return obrazR, obrazG, obrazB
 
 # npi_2a_pil(npi_1_pil())
 # npi_2a_mpl(npi_1_mpl())
@@ -89,6 +77,18 @@ def npi_3a_ocv(obraz):
 # print(npi_2b_pil(npi_1_pil()))
 # print(npi_2b_mpl(npi_1_mpl()))
 # print(npi_2b_ocv(npi_1_ocv()))
-# npi_3a_pil(npi_1_pil())
+# print(npi_3a_pil(npi_1_pil()))
 # npi_3a_mpl(npi_1_mpl())
-npi_3a_ocv(npi_1_ocv())
+# npi_3a_ocv(npi_1_ocv())
+#
+# for i in range(0,3):
+#     npi_2a_pil(npi_3a_pil(npi_1_pil())[i])
+#
+# for i in range(0,3):
+#     npi_2a_mpl(npi_3a_mpl(npi_1_mpl())[i])
+
+for i in range(0,3):
+    npi_2a_mpl_gray(npi_3a_mpl(npi_1_mpl())[i])
+
+# for i in range(0,3):
+#     npi_2a_ocv(npi_3a_ocv(npi_1_ocv())[i])
