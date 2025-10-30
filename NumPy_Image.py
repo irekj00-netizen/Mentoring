@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image
+from PIL import ImageOps
 import matplotlib.pyplot as plt
 import matplotlib.image as img
 import cv2
@@ -21,12 +22,6 @@ def npi_2a_pil(obraz):
 
 def npi_2a_mpl(obraz):
     plt.imshow(obraz)
-    plt.axis('off')
-    plt.show()
-
-def npi_2a_mpl_gray(obraz):
-    obraz = cv2.cvtColor(obraz, cv2.COLOR_BGR2GRAY)
-    plt.imshow(obraz, cmap='gray')
     plt.axis('off')
     plt.show()
 
@@ -71,9 +66,36 @@ def npi_3a_ocv(obraz):
     obrazG[:, :, (0,2)] = 0
     return obrazR, obrazG, obrazB
 
+def npi_3a_pil_gray(obraz):
+    obraz = ImageOps.grayscale(obraz)
+    obraz.show()
+
+def npi_3a_mpl_gray(obraz):
+    # obraz = cv2.cvtColor(obraz, cv2.COLOR_BGR2GRAY)
+    obraz = np.asarray(obraz)
+    plt.imshow(obraz, cmap='gray', vmin=0, vmax=255)
+    plt.axis('off')
+    plt.show()
+
+def npi_3a_ocv_gray(obraz):
+    obraz = cv2.cvtColor(obraz, cv2.COLOR_BGR2GRAY)
+    cv2.imshow("Obraz", obraz)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def npi_4a():
+    print("Kolory są zamienione, bo OpenCV używa BRG zamiast RGB.")
+
+def npi_4b(obraz):
+    obraz_rgb=cv2.cvtColor(obraz, cv2.COLOR_BGR2RGB)
+    cv2.imshow("Obraz", obraz_rgb)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
 # npi_2a_pil(npi_1_pil())
 # npi_2a_mpl(npi_1_mpl())
-# npi_2a_ocv(npi_1_ocv())
+npi_2a_ocv(npi_1_ocv())
 # print(npi_2b_pil(npi_1_pil()))
 # print(npi_2b_mpl(npi_1_mpl()))
 # print(npi_2b_ocv(npi_1_ocv()))
@@ -87,8 +109,16 @@ def npi_3a_ocv(obraz):
 # for i in range(0,3):
 #     npi_2a_mpl(npi_3a_mpl(npi_1_mpl())[i])
 
-for i in range(0,3):
-    npi_2a_mpl_gray(npi_3a_mpl(npi_1_mpl())[i])
-
 # for i in range(0,3):
 #     npi_2a_ocv(npi_3a_ocv(npi_1_ocv())[i])
+
+# for i in range(0,3):
+#     npi_3a_pil_gray(npi_3a_pil(npi_1_pil())[i])
+
+# for i in range(0,3):
+#     npi_3a_mpl_gray(npi_3a_mpl(npi_1_mpl())[i])
+
+# for i in range(0,3):
+#     npi_3a_ocv_gray(npi_3a_ocv(npi_1_ocv())[i])
+
+npi_4b(npi_1_ocv())
